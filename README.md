@@ -2,7 +2,7 @@
 
 ### Native Android Therapeutic Drug Monitoring Calculator
 
-**CDE2313 – Mobile Application Development**
+**CDE2313 – Mobile Application Development**.
 **Group 7**
 **Albukhary International University**
 
