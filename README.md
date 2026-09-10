@@ -8,6 +8,27 @@ The application focuses on **Vancomycin pharmacokinetics** and provides three la
 
 ---
 
+## Repository structure
+
+```text
+TDM-Insight/
+├── README.md                 # Project landing page
+├── LICENSE
+├── .gitignore
+├── app/                      # Android Studio application module
+├── gradle/                   # Gradle configuration and wrapper
+├── screenshots/              # Demonstration screenshots
+├── docs/                     # Case study, wireframes, and diagrams
+├── apk/app-release.apk       # Debug-build APK for demonstration
+├── presentation/             # Final presentation files
+├── ai/AI_Usage_Log.md        # AI assistance declaration
+└── assets/                   # Supporting resources
+```
+
+The APK in `apk/` is provided for demonstration. The project remains the source of truth for building the application.
+
+---
+
 ## Features
 
 ### 🧮 Vancomycin TDM Calculator
