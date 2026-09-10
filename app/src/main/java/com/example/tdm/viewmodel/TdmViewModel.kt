@@ -66,13 +66,14 @@ class TdmViewModel(application: Application) : AndroidViewModel(application) {
   private val _activeTab = MutableStateFlow(AppTab.CALCULATOR)
   val activeTab: StateFlow<AppTab> = _activeTab.asStateFlow()
 
-  private val _input = MutableStateFlow(TdmInput(
+  private fun emptyInput() = TdmInput(
     patient = Patient(patientName = "", patientId = "", ageYears = 0.0,
       heightCm = 0.0, weightKg = 0.0, serumCreatinine = 0.0),
     regimen = DosingRegimen(doseMg = 0.0, intervalHours = 0.0, infusionDurationHours = 0.0),
     preDoseConcMgL = null, preDoseSampleDelayHoursBeforeNextDose = null,
     postDoseConcMgL = null, postDoseSampleDelayHoursAfterInfusionEnd = null
-  ))
+  )
+  private val _input = MutableStateFlow(emptyInput())
   val input: StateFlow<TdmInput> = _input.asStateFlow()
 
   private val _validation = MutableStateFlow(TdmCalculationEngine.validate(_input.value))
@@ -135,6 +136,16 @@ class TdmViewModel(application: Application) : AndroidViewModel(application) {
   fun setWorkflow(workflow: TdmWorkflow) {
     _input.update { it.copy(workflow = workflow) }
     validateCurrent()
+  }
+
+  fun resetCalculator() {
+    cancelCalculation()
+    _input.value = emptyInput()
+    validateCurrent()
+    _pkResult.value = null
+    _simResult.value = null
+    _attachedReportImagePath.value = null
+    clearCapturedImage()
   }
 
   fun updatePatient(updater: (Patient) -> Patient) {

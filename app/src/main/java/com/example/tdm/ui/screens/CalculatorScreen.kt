@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.example.tdm.model.*
 import com.example.tdm.viewmodel.TdmViewModel
 import java.util.Locale
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,6 +44,7 @@ fun CalculatorScreen(
     )
   }
   val scrollState = rememberScrollState()
+  val scope = rememberCoroutineScope()
   var showCases by remember { mutableStateOf(false) }
   var attempted by remember { mutableStateOf(false) }
   if (showCases) {
@@ -68,8 +70,21 @@ fun CalculatorScreen(
     verticalArrangement = Arrangement.spacedBy(16.dp)
   ) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-      Text("Vancomycin TDM", style = MaterialTheme.typography.titleLarge,
-        fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+      Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Text("Vancomycin TDM", style = MaterialTheme.typography.titleLarge,
+          modifier = Modifier.weight(1f),
+          fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+        TextButton(onClick = {
+          viewModel.resetCalculator()
+          attempted = false
+          showCases = false
+          scope.launch { scrollState.scrollTo(0) }
+        }, modifier = Modifier.testTag("reset_calculator_button")) {
+          Icon(Icons.Default.Refresh, contentDescription = null)
+          Spacer(Modifier.width(4.dp))
+          Text("Reset")
+        }
+      }
       Text("Enter a case, review the values, then calculate.",
         style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }

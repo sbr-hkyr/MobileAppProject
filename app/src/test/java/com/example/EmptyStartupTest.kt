@@ -12,6 +12,17 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [36])
 class EmptyStartupTest {
+  @Test fun resetRestoresInitialInputAfterExample() {
+    val vm = TdmViewModel(ApplicationProvider.getApplicationContext<Application>())
+    val initial = vm.input.value
+    vm.loadFictionalCase(com.example.tdm.model.FictionalCasesRepository.sampleCases.first())
+    vm.resetCalculator()
+    assertEquals(initial, vm.input.value)
+    assertNull(vm.pkResult.value)
+    assertNull(vm.capturedBitmap.value)
+    assertNull(vm.attachedReportImagePath.value)
+    assertFalse(vm.isCalculating.value)
+  }
   @Test fun newSessionHasNoPatientOrCalculatedResult() {
     val vm = TdmViewModel(ApplicationProvider.getApplicationContext<Application>())
     val input = vm.input.value
