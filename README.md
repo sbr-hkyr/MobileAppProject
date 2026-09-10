@@ -459,49 +459,9 @@ The latest APK should be made available through the GitHub repository's **Releas
 
 # 📸 Screenshots
 
-Screenshots of the completed application should be included here to demonstrate the main functionality.
+Screenshots of the completed application included to demonstrate the main functionality.
 
-### Main Screen
-
-`[Insert screenshot here]`
-
-### Vancomycin Pre Workflow
-
-`[Insert screenshot here]`
-
-### Vancomycin Post Workflow
-
-`[Insert screenshot here]`
-
-### Vancomycin Pre + Post Workflow
-
-`[Insert screenshot here]`
-
-### Calculation Results
-
-`[Insert screenshot here]`
-
-### Calculation Explanation
-
-`[Insert screenshot here]`
-
-### Calculation History
-
-`[Insert screenshot here]`
-
-### What-If Simulation
-
-`[Insert screenshot here]`
-
-### Camera / OCR
-
-`[Insert screenshot here]`
-
-### Dark Mode
-
-`[Insert screenshot here]`
-
-> Screenshots can be added to the repository under a `screenshots/` folder and referenced using Markdown image links.
+> Screenshots provided in the repository in a `screenshots` file
 
 ---
 
