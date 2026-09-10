@@ -14,7 +14,7 @@
 | ------------------ | ----------- |
 | Munawa Abudujilili | AIU24102401 |
 | Sebire Hakyar      | AIU24102378 |
-| Shee Rashid Dina   | AIU24102392 |
+| Shee Rashid Dina   | AIU24102392 |.
 
 ---
 
