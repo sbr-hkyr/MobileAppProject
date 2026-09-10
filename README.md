@@ -2,22 +2,9 @@
 
 ### Native Android Therapeutic Drug Monitoring Calculator
 
-**CDE2313 – Mobile Application Development**.
+**CDE2313 – Mobile Application Development**
 **Group 7**
 **Albukhary International University**
----
-
-# 📌 Project Information
-
-**Project:** TDM Insight
-**Course:** CDE2313 – Mobile Application Development
-**Group:** 7
-**Institution:** Albukhary International University
-**Platform:** Native Android
-**Language:** Kotlin
-**UI Framework:** Jetpack Compose
-**Design System:** Material 3
-**Application ID:** `com.tdminsight.app`
 
 ---
 
@@ -39,36 +26,34 @@ Hospital pharmacy departments perform **Therapeutic Drug Monitoring (TDM)** calc
 
 The assigned case study required the development of **TDM Insight**, a native Android application that brings these inputs and pharmacokinetic calculations together in a structured and understandable mobile application.
 
-The project focuses specifically on **Vancomycin Therapeutic Drug Monitoring** and provides different calculation workflows depending on the available laboratory measurements.
-
-The case study requires the application to provide three main Vancomycin workflows:
+The project focuses on **Vancomycin Therapeutic Drug Monitoring** and supports three main calculation workflows:
 
 * **Vancomycin Pre** – using a pre-dose concentration.
 * **Vancomycin Post** – using a post-dose concentration and sampling information.
 * **Vancomycin Pre + Post** – using both pre-dose and post-dose concentrations with their corresponding timing information.
 
-The original case study also requires dynamic input forms, input validation, a dedicated calculation engine, intermediate and final pharmacokinetic results, and explanations of the calculations.
+The case study also requires dynamic input forms, validation, a dedicated calculation engine, intermediate and final pharmacokinetic results, and explainable calculations.
 
 ### Implemented Solution
 
-TDM Insight was developed as a native Android application using **Kotlin and Jetpack Compose**.
+TDM Insight was implemented as a **native Android application using Kotlin and Jetpack Compose**.
 
-The application provides a structured workflow in which users can:
+The completed application provides:
 
-1. Create or select a fictional patient case.
-2. Enter patient and medication information.
-3. Select Vancomycin as the medication.
-4. Select the required TDM workflow.
-5. Enter the laboratory and dosing information required by that workflow.
-6. Validate the entered information.
-7. Perform the pharmacokinetic calculation.
-8. Review intermediate and final results.
-9. View a step-by-step calculation explanation.
-10. Save and review previous calculations.
-11. Perform what-if dosing simulations.
-12. Use the camera and OCR functionality to assist with laboratory-report data entry.
+1. Fictional patient and clinical case input.
+2. Dynamic Vancomycin TDM workflows.
+3. Input and cross-field validation.
+4. A dedicated pharmacokinetic calculation engine.
+5. Intermediate and final calculation results.
+6. Step-by-step calculation explanations.
+7. Local calculation history.
+8. What-if dosing simulation.
+9. Concentration-time visualization.
+10. Laboratory-report camera and OCR functionality.
+11. Review and confirmation of OCR-extracted values.
+12. Light, dark, and system theme support.
 
-The application was designed as an **academic prototype** and all demonstration cases are fictional.
+All demonstration cases are fictional and the application is intended as an academic software prototype.
 
 ---
 
@@ -76,19 +61,27 @@ The application was designed as an **academic prototype** and all demonstration 
 
 ## 1. Vancomycin TDM Workflows
 
-The application supports:
+TDM Insight supports three calculation pathways:
 
-* Vancomycin Pre
-* Vancomycin Post
-* Vancomycin Pre + Post
+### Vancomycin Pre
 
-The input form dynamically adapts according to the selected workflow rather than displaying every possible field at once.
+Uses a pre-dose/trough concentration together with the required patient, dosing, and sampling information.
+
+### Vancomycin Post
+
+Uses a post-dose concentration and its corresponding sampling information.
+
+### Vancomycin Pre + Post
+
+Uses both pre-dose and post-dose concentrations with their corresponding timing information for two-point pharmacokinetic estimation.
+
+The calculator dynamically changes the required input fields according to the selected workflow.
 
 ---
 
-## 2. Patient and Medication Inputs
+## 2. Patient and Medication Information
 
-The application supports structured entry of information including:
+The calculator supports structured input for:
 
 * Patient name
 * Patient ID
@@ -111,9 +104,15 @@ The application supports structured entry of information including:
 
 ## 3. Pharmacokinetic Calculation Engine
 
-The project contains a dedicated **TDM Calculation Engine** that separates calculation logic from the user interface.
+The project contains a dedicated:
 
-The application calculates pharmacokinetic parameters including:
+```text
+TdmCalculationEngine
+```
+
+which separates pharmacokinetic calculations from the user interface.
+
+Depending on the selected workflow, the application calculates parameters including:
 
 * Creatinine clearance (CrCl)
 * Ideal Body Weight (IBW)
@@ -129,15 +128,31 @@ The application calculates pharmacokinetic parameters including:
 * 24-hour AUC (AUC₂₄)
 * AUC₂₄/MIC
 
-The Pre + Post workflow uses two-point pharmacokinetic estimation based on the implemented Sawchuk-Zaske approach.
+The Pre + Post workflow implements two-point pharmacokinetic estimation.
 
-The case study specifically requires that calculation logic be separated from Composable/UI functions and that structured input and result models be used.
+The calculation architecture follows the case-study requirement:
+
+```text
+UI
+ ↓
+Input State
+ ↓
+Validation
+ ↓
+TDM Calculation Engine
+ ↓
+Result Model
+ ↓
+Results UI
+```
+
+The case study specifically requires the calculation engine to be separated from Composable/UI functions.
 
 ---
 
 ## 4. Input Validation
 
-The application validates user input before performing calculations.
+The application performs validation before calculations are executed.
 
 Validation includes:
 
@@ -147,50 +162,49 @@ Validation includes:
 * Unit validation
 * Cross-field validation
 * Sampling-time validation
-* Dose and dosing-interval validation
+* Dose validation
+* Dosing-interval validation
+* Workflow-specific required-field validation
 * Protection against invalid mathematical operations
-* Detection of missing workflow-specific information
 * Warnings for values requiring review
 
-This goes beyond simply checking whether a field has been left empty, as required by the case study.
+This reflects the case-study requirement that validation should go beyond checking whether a field is empty.
 
 ---
 
-## 5. Explainable Results
+## 5. Explainable Calculation Results
 
-TDM Insight provides more than a final numerical answer.
+TDM Insight provides users with a step-by-step explanation of the calculation rather than displaying only the final result.
 
-Users can view the calculation process through:
+The calculation flow is presented as:
 
 ```text
 Input Values
-     ↓
+      ↓
 Intermediate Calculations
-     ↓
+      ↓
 Pharmacokinetic Parameters
-     ↓
-Final Result
+      ↓
+Final Results
 ```
 
-The explanation displays important inputs, formulas, intermediate values, and calculated results in a simplified sequence.
+The explanation includes relevant formulas, input values, intermediate calculations, and resulting pharmacokinetic parameters.
 
-This follows the case-study requirement that users should be able to understand how the main results were obtained.
+This follows the case-study requirement for explainable results.
 
 ---
 
 ## 6. Therapeutic Assessment
 
-The application evaluates calculated Vancomycin exposure and provides an interpretation of the calculated results.
-
-AUC₂₄ is categorized into:
+The application evaluates Vancomycin exposure and categorizes AUC₂₄ results as:
 
 * **Sub-therapeutic**
 * **Therapeutic**
 * **Supra-therapeutic / Toxic Risk**
 
-The application also evaluates relevant concentration results according to the selected indication and configured targets.
+Relevant concentration results are also assessed according to the configured indication and target values.
 
-> These assessments are implemented for academic demonstration and must not be treated as clinical prescribing advice.
+> These assessments are provided for academic demonstration only and must not be interpreted as real-world clinical prescribing advice.
 
 ---
 
@@ -203,30 +217,35 @@ Users can explore alternative:
 * Vancomycin doses
 * Dosing intervals
 
-The simulation provides estimated pharmacokinetic results such as:
+The simulator provides estimated results including:
 
 * Cmax
 * Cmin
 * AUC₂₄
 * Exposure status
 
-A concentration-time curve is also provided to visualize the simulated regimen.
+A concentration-time curve is also displayed to visualize the simulated pharmacokinetic profile.
 
 ---
 
 ## 8. Calculation History
 
-TDM Insight includes local calculation history using **Android Room**.
+TDM Insight uses **Android Room** for local calculation history.
 
-Users can save and review previous TDM calculations without requiring an online account or cloud backend.
+Users can save and review previous calculations directly on the device.
 
-The stored information can include patient, dosing, pharmacokinetic, and calculation-result information.
+The application does not require:
+
+* User accounts
+* Cloud storage
+* A backend server
+* API keys
 
 ---
 
-## 9. Camera and OCR
+## 9. Laboratory Camera and OCR
 
-The application includes a laboratory-report camera workflow using **Google ML Kit Text Recognition**.
+TDM Insight includes a laboratory-report capture and OCR workflow using **Google ML Kit Text Recognition**.
 
 The workflow is:
 
@@ -244,21 +263,17 @@ Capture Laboratory Report
  Use in TDM Calculation
 ```
 
-The OCR functionality assists with extracting relevant laboratory and medication information from fictional laboratory reports.
+Extracted values require user review and confirmation before being used in the calculation workflow.
 
-Extracted information is reviewed and confirmed by the user before being used in a calculation.
-
-This follows the case-study concept of:
-
-**Camera → Capture → Review → Confirm Value → Use in Calculation**.
+This follows the optional camera workflow described in the case study.
 
 ---
 
 ## 10. Concentration-Time Visualization
 
-The application provides a concentration-time graph for pharmacokinetic visualization and simulation.
+The application provides a concentration-time graph for pharmacokinetic visualization and regimen simulation.
 
-This helps users understand how Vancomycin concentration changes over time under a selected dosing regimen.
+This allows users to visually explore changes in Vancomycin concentration over time.
 
 ---
 
@@ -270,106 +285,182 @@ The application supports:
 * Dark mode
 * System default mode
 
-The theme is managed through the application's state and integrated with the Jetpack Compose UI.
+The theme is managed through the application's state and integrated with Jetpack Compose.
 
 ---
 
 # 🛠️ Technology Stack
 
-| Technology             | Purpose                          |
-| ---------------------- | -------------------------------- |
-| **Kotlin**             | Application programming language |
-| **Android Studio**     | Development environment          |
-| **Jetpack Compose**    | User interface development       |
-| **Material 3**         | UI design system                 |
-| **Android ViewModel**  | Application state management     |
-| **Room**               | Local calculation history        |
-| **Google ML Kit**      | OCR/text recognition             |
-| **Coil**               | Image loading                    |
-| **Kotlin Coroutines**  | Asynchronous operations          |
-| **JUnit**              | Unit testing                     |
-| **Robolectric**        | Android/JVM testing              |
-| **Compose UI Testing** | UI testing                       |
-| **Roborazzi**          | UI screenshot testing            |
+| Technology             | Purpose                         |
+| ---------------------- | ------------------------------- |
+| **Kotlin**             | Main programming language       |
+| **Android Studio**     | Android development environment |
+| **Jetpack Compose**    | User interface                  |
+| **Material 3**         | UI design system                |
+| **ViewModel**          | Application state management    |
+| **Room**               | Local calculation history       |
+| **Google ML Kit**      | OCR/text recognition            |
+| **Coil**               | Image loading                   |
+| **Kotlin Coroutines**  | Asynchronous operations         |
+| **JUnit**              | Unit testing                    |
+| **Robolectric**        | JVM/Android testing             |
+| **Compose UI Testing** | UI testing                      |
+| **Roborazzi**          | Screenshot/UI testing           |
 
 ---
 
 # 🏗️ Application Architecture
 
-TDM Insight follows a structured architecture that separates the user interface from the calculation logic.
+TDM Insight uses a layered architecture that separates the UI, application state, data persistence, and calculation logic.
 
 ```text
-┌─────────────────────────┐
-│    Jetpack Compose UI   │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│      TdmViewModel       │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│ Input State & Validation │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│ TdmCalculationEngine    │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│   Pharmacokinetic       │
-│       Results           │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│ Results & Explanation   │
-└─────────────────────────┘
+┌────────────────────────────┐
+│      Jetpack Compose UI    │
+│                            │
+│ Calculator / Results /     │
+│ History / Camera /         │
+│ Simulator / Explanation   │
+└─────────────┬──────────────┘
+              │
+              ▼
+┌────────────────────────────┐
+│       TdmViewModel         │
+│                            │
+│ Application State & Flow   │
+└─────────────┬──────────────┘
+              │
+       ┌──────┴──────┐
+       ▼             ▼
+┌─────────────┐ ┌──────────────┐
+│ Validation  │ │ Room Database│
+└──────┬──────┘ └──────────────┘
+       │
+       ▼
+┌────────────────────────────┐
+│   TdmCalculationEngine     │
+│                            │
+│ Pharmacokinetic Calculations│
+└─────────────┬──────────────┘
+              │
+              ▼
+┌────────────────────────────┐
+│       Result Models        │
+│                            │
+│ Results / Explanation /    │
+│ Simulation                 │
+└────────────────────────────┘
 ```
 
 ### Main Components
 
-* **`MainActivity`** – application entry point and theme configuration.
-* **`TdmApp`** – main application UI and navigation.
-* **`TdmViewModel`** – manages application state and coordinates application features.
-* **`TdmCalculationEngine`** – performs validation and pharmacokinetic calculations.
-* **Model classes** – represent structured TDM inputs, patients, results, calculation steps, and simulation data.
-* **Room database** – stores local calculation history.
-* **Lab Report Extractor** – handles OCR-based laboratory information extraction.
-* **UI components** – provide calculation forms, results, explanations, history, simulation, camera functionality, and visualization.
+| Component                     | Role                                            |
+| ----------------------------- | ----------------------------------------------- |
+| `MainActivity.kt`             | Application entry point and theme configuration |
+| `TdmApp.kt`                   | Main application UI and navigation              |
+| `TdmViewModel.kt`             | Application state and feature coordination      |
+| `TdmCalculationEngine.kt`     | Pharmacokinetic calculations and validation     |
+| `TdmInput.kt`                 | Structured TDM calculation input                |
+| `PkResult.kt`                 | Pharmacokinetic result model                    |
+| `Patient.kt`                  | Patient information model                       |
+| `FictionalCases.kt`           | Fictional demonstration cases                   |
+| `CalculationHistoryEntity.kt` | Room history data model                         |
+| `CalculationHistoryDao.kt`    | Database access                                 |
+| `TdmDatabase.kt`              | Room database configuration                     |
+| `LabReportExtractor.kt`       | OCR/laboratory report extraction                |
+| `PkCurveChart.kt`             | Concentration-time visualization                |
 
 ---
 
 # 📂 GitHub Repository Structure
 
+The repository contains the Android application together with project documentation, presentation material, screenshots, AI usage documentation, and the release APK.
+
 ```text
-TDM-Insight/
+MobileAppProject-master/
 │
 ├── app/
+│   ├── build.gradle.kts
 │   └── src/
 │       ├── main/
-│       │   ├── java/
-│       │   │   └── com/example/
-│       │   │       ├── MainActivity.kt
-│       │   │       │
-│       │   │       └── tdm/
-│       │   │           ├── camera/
-│       │   │           ├── data/
-│       │   │           ├── engine/
-│       │   │           ├── model/
-│       │   │           ├── ui/
-│       │   │           └── viewmodel/
+│       │   ├── AndroidManifest.xml
 │       │   │
-│       │   └── AndroidManifest.xml
+│       │   └── java/
+│       │       └── com/
+│       │           └── example/
+│       │               ├── MainActivity.kt
+│       │               │
+│       │               ├── tdm/
+│       │               │   ├── camera/
+│       │               │   │   └── LabReportExtractor.kt
+│       │               │   │
+│       │               │   ├── data/
+│       │               │   │   ├── CalculationHistoryDao.kt
+│       │               │   │   ├── CalculationHistoryEntity.kt
+│       │               │   │   └── TdmDatabase.kt
+│       │               │   │
+│       │               │   ├── engine/
+│       │               │   │   └── TdmCalculationEngine.kt
+│       │               │   │
+│       │               │   ├── model/
+│       │               │   │   ├── FictionalCases.kt
+│       │               │   │   ├── Patient.kt
+│       │               │   │   ├── PkResult.kt
+│       │               │   │   ├── TdmInput.kt
+│       │               │   │   └── ThemeMode.kt
+│       │               │   │
+│       │               │   ├── ui/
+│       │               │   │   ├── TdmApp.kt
+│       │               │   │   ├── components/
+│       │               │   │   │   └── PkCurveChart.kt
+│       │               │   │   └── screens/
+│       │               │   │       ├── CalculatorScreen.kt
+│       │               │   │       ├── CameraScreen.kt
+│       │               │   │       ├── DisclaimerScreen.kt
+│       │               │   │       ├── ExplanationScreen.kt
+│       │               │   │       ├── HistoryScreen.kt
+│       │               │   │       ├── ResultsScreen.kt
+│       │               │   │       └── SimulatorScreen.kt
+│       │               │   │
+│       │               │   └── viewmodel/
+│       │               │       └── TdmViewModel.kt
+│       │               │
+│       │               └── ui/
+│       │                   └── theme/
 │       │
-│       └── test/
+│       ├── test/
+│       │   └── java/
+│       │
+│       └── androidTest/
+│           └── java/
 │
+├── ai/
+│   └── AI_Usage_Log.md
+│
+├── apk/
+│   └── app-release.apk
+│
+├── assets/
+│   └── README.md
+│
+├── docs/
+│   ├── Case_Study_Analysis.md
+│   ├── diagrams/
+│   │   └── README.md
+│   └── wireframe/
+│       └── README.md
+│
+├── presentation/
+│   └── README.md
+│
+├── screenshots/
+│   └── README.md
+│
+├── Screenshots.pdf
+├── LICENSE
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradle.properties
 ├── gradle/
-├── build.gradle
-├── settings.gradle
 ├── gradlew
 ├── gradlew.bat
 └── README.md
@@ -379,68 +470,68 @@ TDM-Insight/
 
 # 📥 Installation Guide
 
-### Requirements
+## Requirements
 
 * Android Studio
 * Android SDK Platform 36.1
 * Android Build Tools 36.0.0
 * Android device or emulator running **API 24 or higher**
-* Compatible JDK configured through Android Studio
-* Internet connection for the initial Gradle dependency download
+* Java/JDK 11 compatible with the project configuration
+* Internet connection for initial Gradle dependency downloads
 
-### Installation Steps
+## Using Android Studio
 
-1. Clone the repository:
+1. Clone the repository.
 
 ```bash
 git clone <GITHUB_REPOSITORY_URL>
 ```
 
-2. Open the project in **Android Studio**.
+2. Open the project in Android Studio.
 
-3. Allow Android Studio to synchronize the Gradle files.
+3. Allow Gradle synchronization to complete.
 
 4. Connect an Android device or start an Android emulator.
 
-5. Ensure the device uses **API 24 or higher**.
+5. Select the `app` configuration.
 
-6. Select the `app` run configuration.
+6. Click **Run**.
 
-7. Click **Run**.
-
-No user account, API key, backend, or cloud service is required.
+The application does not require an account, API key, backend server, or cloud service.
 
 ---
 
 # 🔨 How to Build the Project
 
-### Windows
+The project includes the Gradle wrapper, so Gradle does not need to be installed separately.
 
-Build the debug APK:
+### Build Debug APK
+
+On Windows:
 
 ```powershell
 .\gradlew.bat assembleDebug
 ```
 
-Run unit tests:
+### Run Unit Tests
 
 ```powershell
 .\gradlew.bat testDebugUnitTest
 ```
 
-Run lint:
+### Run Lint
 
 ```powershell
 .\gradlew.bat lintDebug
 ```
 
-Run Android instrumentation tests:
+### Run Android Instrumentation Tests
 
 ```powershell
 .\gradlew.bat connectedDebugAndroidTest
 ```
 
-The generated debug APK can be found under the project's:
+The generated APK is produced under:
 
 ```text
 app/build/outputs/apk/
@@ -450,49 +541,123 @@ app/build/outputs/apk/
 
 # 📱 APK Download
 
-The latest APK should be made available through the GitHub repository's **Releases** section or uploaded to the repository as required for project submission.
+A release APK is included directly in the repository:
 
-**APK:** `[Download TDM Insight APK](https://github.com/sbr-hkyr/TDM-Insight/releases/tag/v1.0.0)`
+**[Download TDM Insight APK](./apk/app-release.apk)**
 
+The APK can also be installed directly on a compatible Android device.
+
+> The included APK is intended for academic demonstration and testing.
 
 ---
 
 # 📸 Screenshots
 
-Screenshots of the completed application included to demonstrate the main functionality.
+Screenshots documenting the completed application are included in the repository.
 
-> Screenshots provided in the repository in a `screenshots` file
+### Screenshot Collection
+
+A complete screenshot document is available here:
+
+**[View Screenshots PDF](./Screenshots.pdf)**
+
+The repository also contains the `screenshots/` directory for screenshot-related project material.
+
+The documented application screens include functionality such as:
+
+* Calculator
+* Vancomycin workflow selection
+* Results
+* Calculation explanation
+* History
+* Simulation
+* Camera/OCR
+* Application settings and theme
+
+---
+
+# 📚 Project Documentation
+
+Additional project documentation is available in the repository:
+
+### Case Study Analysis
+
+```text
+docs/Case_Study_Analysis.md
+```
+
+Contains the project's analysis of the assigned case study.
+
+### Wireframes
+
+```text
+docs/wireframe/
+```
+
+Contains wireframe-related project documentation.
+
+### Diagrams
+
+```text
+docs/diagrams/
+```
+
+Contains system/project diagrams.
+
+### Presentation
+
+```text
+presentation/
+```
+
+Contains project presentation-related material.
+
+### AI Usage Documentation
+
+```text
+ai/AI_Usage_Log.md
+```
+
+Documents how AI tools were used as development assistance during the project.
+
+The AI usage log states that AI assistance was used for areas including debugging, refactoring, UI iteration, documentation drafting, and test planning, with generated suggestions reviewed, adapted, built, and tested by the students.
 
 ---
 
 # 🧪 Testing
 
-The project includes automated tests covering key application and calculation functionality.
+The project contains both unit tests and Android instrumentation tests.
 
-Testing includes:
+Testing covers areas including:
 
 * Vancomycin Pre calculations
 * Vancomycin Post calculations
 * Vancomycin Pre + Post calculations
+* Calculation loading
 * Input validation
+* Pharmacokinetic result validity
 * Cross-field validation
-* Pharmacokinetic result validation
 * What-if simulation
-* OCR extraction
+* OCR functionality
 * Application startup
 * Navigation
 * Back navigation
 * Calculator reset behaviour
 * State restoration
 
-Example:
+Testing commands:
 
 ```powershell
 .\gradlew.bat testDebugUnitTest
+```
+
+and:
+
+```powershell
 .\gradlew.bat connectedDebugAndroidTest
 ```
 
-Automated tests verify software behaviour but do not establish clinical validity.
+Automated software tests verify implementation behaviour but do not establish clinical validity.
 
 ---
 
@@ -502,7 +667,7 @@ TDM Insight is an **academic software prototype** developed for CDE2313 – Mobi
 
 It is intended only for educational and software-development purposes.
 
-The application must **not** be presented or used as:
+The application must not be presented or used as:
 
 * A clinically validated prescribing system
 * A diagnostic system
@@ -512,7 +677,9 @@ The application must **not** be presented or used as:
 
 All patient cases and laboratory information used for demonstrations are fictional.
 
-## The case study explicitly states that clinical equations, units, assumptions, and reference values should be supported by authoritative sources and that the application must not be presented as a clinically validated treatment-decision system.
+The original case study explicitly states that TDM Insight must not be presented as a clinically validated prescribing, diagnostic, or autonomous treatment-decision system.
+
+---
 
 # 🙏 Acknowledgements
 
@@ -522,13 +689,13 @@ We would like to acknowledge:
 * **Madam Siti Shafrah Shahawai** – Co-Lead Instructor
 * **Albukhary International University**
 * The **CDE2313 Mobile Application Development** course team for providing the case study and project requirements.
-* The clinical and technical references used to understand Therapeutic Drug Monitoring and Vancomycin pharmacokinetics.
+* The clinical and technical resources used to understand Therapeutic Drug Monitoring and Vancomycin pharmacokinetics.
 
 ---
 
 # 📚 References
 
-The following resources were identified in the project case study as references for domain understanding and clinical reference checking:
+The assigned case study identifies the following resources as starting points for TDM domain understanding and reference checking:
 
 1. **myTDM Calculator**
    https://www.mytdmcalculator.com/
@@ -537,7 +704,29 @@ The following resources were identified in the project case study as references 
 
 3. **Current authoritative Vancomycin Therapeutic Drug Monitoring guidance**
 
-The exact clinical equations, assumptions, target ranges, and reference values used in the application should be interpreted together with their corresponding authoritative clinical sources.
+The exact clinical equations, assumptions, target values, and reference ranges should be interpreted together with their corresponding authoritative clinical sources.
+
+---
+
+# 📌 Project Information
+
+| Item               | Details                                  |
+| ------------------ | ---------------------------------------- |
+| **Project**        | TDM Insight                              |
+| **Course**         | CDE2313 – Mobile Application Development |
+| **Group**          | Group 7                                  |
+| **Institution**    | Albukhary International University       |
+| **Platform**       | Native Android                           |
+| **Language**       | Kotlin                                   |
+| **UI Framework**   | Jetpack Compose                          |
+| **Design System**  | Material 3                               |
+| **Application ID** | `com.tdminsight.app`                     |
+| **Minimum SDK**    | API 24                                   |
+| **Target SDK**     | API 36                                   |
+| **Compile SDK**    | Android 36.1                             |
+| **Version**        | 1.0                                      |
+
+---
 
 ## 👥 Group 7
 
