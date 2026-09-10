@@ -1,0 +1,8 @@
+<resources>
+    <style name="Theme.MyApplication" parent="android:Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_legacy</item>
+        <item name="android:statusBarColor">@color/startup_background</item>
+        <item name="android:navigationBarColor">@color/startup_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

@@ -148,7 +148,7 @@ fun CameraScreen(
           )
         }
         Text(
-          text = "Capture fictional laboratory reports, extract pharmacokinetic levels via OCR, review, and confirm values before calculating.",
+          text = "Capture laboratory reports, extract pharmacokinetic levels via OCR, review, and confirm values before calculating.",
           style = MaterialTheme.typography.bodySmall,
           color = MaterialTheme.colorScheme.onPrimaryContainer
         )

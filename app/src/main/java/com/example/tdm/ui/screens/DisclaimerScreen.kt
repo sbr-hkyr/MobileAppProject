@@ -117,7 +117,7 @@ fun DisclaimerScreen(
           color = MaterialTheme.colorScheme.primary
         )
         Text(
-          text = "• Course: CDE2313 Mobile Application Development\n• Programme: Bachelor in Data Science\n• Institution: Albukhary International University (AIU)\n• Instructors: Ts. Mohd Zulkifli Mohd Zaki (Lead), Madam Siti Shafrah Shahawai (Co-Lead)\n• Architecture: MVVM + Clean Calculation Engine + Room Database + Jetpack Compose Material 3",
+          text = "• Course: CDE2313 Mobile Application Development\n• Programme: Bachelor in Computer Science\n• Institution: Albukhary International University (AIU)\n• Instructors: Ts. Mohd Zulkifli Mohd Zaki (Lead), Madam Siti Shafrah Shahawai (Co-Lead)\n• Architecture: MVVM + Clean Calculation Engine + Room Database + Jetpack Compose Material 3\n• Students Developed The Project: Sebire Hakyar (AIU24102378), Munawa Abudujilili (AIU24102401), Shee Rashid Dina (AIU24102392)",
           style = MaterialTheme.typography.bodySmall,
           color = MaterialTheme.colorScheme.onSurfaceVariant
         )
