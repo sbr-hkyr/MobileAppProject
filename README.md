@@ -5,6 +5,19 @@
 **CDE2313 – Mobile Application Development**.
 **Group 7**
 **Albukhary International University**
+---
+
+# 📌 Project Information
+
+**Project:** TDM Insight
+**Course:** CDE2313 – Mobile Application Development
+**Group:** 7
+**Institution:** Albukhary International University
+**Platform:** Native Android
+**Language:** Kotlin
+**UI Framework:** Jetpack Compose
+**Design System:** Material 3
+**Application ID:** `com.tdminsight.app`
 
 ---
 
@@ -439,9 +452,8 @@ app/build/outputs/apk/
 
 The latest APK should be made available through the GitHub repository's **Releases** section or uploaded to the repository as required for project submission.
 
-**APK:** `[Download TDM Insight APK](ADD_APK_LINK_HERE)`
+**APK:** `[Download TDM Insight APK](https://github.com/sbr-hkyr/TDM-Insight/releases/tag/v1.0.0)`
 
-> Replace `ADD_APK_LINK_HERE` with the actual GitHub APK/release link before submission.
 
 ---
 
@@ -566,22 +578,6 @@ The following resources were identified in the project case study as references 
 3. **Current authoritative Vancomycin Therapeutic Drug Monitoring guidance**
 
 The exact clinical equations, assumptions, target ranges, and reference values used in the application should be interpreted together with their corresponding authoritative clinical sources.
-
----
-
-# 📌 Project Information
-
-**Project:** TDM Insight
-**Course:** CDE2313 – Mobile Application Development
-**Group:** 7
-**Institution:** Albukhary International University
-**Platform:** Native Android
-**Language:** Kotlin
-**UI Framework:** Jetpack Compose
-**Design System:** Material 3
-**Application ID:** `com.tdminsight.app`
-
----
 
 ## 👥 Group 7
 
